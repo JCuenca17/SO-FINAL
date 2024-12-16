@@ -1,5 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
+import subprocess
+
+def ejecutar_script(script):
+    #Ejecuta un archivo Python en un nuevo proceso.
+    try:
+        subprocess.Popen(["python", script])
+    except Exception as e:
+        messagebox.showerror("Error", f"No se pudo ejecutar {script}: {e}")
 
 def abrir_aplicacion1():
     ventana1 = tk.Toplevel(root)
@@ -10,11 +18,11 @@ def abrir_aplicacion1():
     etiqueta.pack(pady=10)
 
     botones = [
-        ("FCFS", lambda: print("FCFS seleccionado")),
-        ("RR", lambda: print("RR seleccionado")),
-        ("SJF", lambda: print("SJF seleccionado")),
-        ("Prioridad", lambda: print("Prioridad seleccionado")),
-        ("RR con Prioridad", lambda: print("RR con Prioridad seleccionado"))
+        ("FCFS", lambda: ejecutar_script("fcfs_scheduler.py")),
+        ("RR", lambda: ejecutar_script("rr_scheduler.py")),
+        ("SJF", lambda: ejecutar_script("sjf_scheduler.py")),
+        ("Prioridad", lambda: ejecutar_script("Prioridad.py")),
+        ("RR con Prioridad", lambda: ejecutar_script("RR_Prioridad.py"))
     ]
 
     for texto, comando in botones:
@@ -30,9 +38,9 @@ def abrir_aplicacion2():
     etiqueta.pack(pady=10)
 
     botones = [
-        ("Paginación", lambda: print("Paginación seleccionado")),
-        ("Segmentación", lambda: print("Segmentación seleccionado")),
-        ("Segmentación Paginada", lambda: print("Segmentación Paginada seleccionado"))
+        ("Paginación", lambda: ejecutar_script("paginacion.py")),
+        ("Segmentación", lambda: ejecutar_script("segmentacion.py")),
+        ("Segmentación Paginada", lambda: ejecutar_script("segmentacion_paginada.py"))
     ]
 
     for texto, comando in botones:
@@ -103,4 +111,3 @@ fecha_hora.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-10)
 
 # Ejecutar la aplicación
 root.mainloop()
-
